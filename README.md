@@ -2,7 +2,7 @@
 ==============
 This is a Zepto and jQuery plugin to create OAuth buttons.
 
-The idea is to provide an easy, fast and reliable OAuth authentication for HTML5 / PhoneGap apps with ChildBrowser and windows popups (offline development without the need of a phone/emulator).
+The idea is to provide an easy, fast and reliable OAuth authentication for HTML5 / PhoneGap apps with ChildBrowser and windows popups (offline development without the need of a phone/emulator). You still need to upload the app files somewhere or use a local server since the browser have security limitations when running the app on file://.
 
 *requires zepto.min.js or jquery.min.js.*
 
@@ -42,4 +42,4 @@ Or download our demo app (wich uses the same code) here:
 
 ## About
 Developed by StarBite, Bogota - Colombia @ 2012.
-* @jor3l <jose@starbite.co>
+* @jor3l / <jose@starbite.co>
