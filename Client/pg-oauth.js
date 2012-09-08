@@ -85,7 +85,7 @@
 				
             //Iterate over the current set of matched elements
             return this.each(function() {
-				$(this).click(function() {
+				$(this).bind('click', function() {
 					if('plugins' in window && window.plugins.childBrowser) {
 						console.log('Opening childBrowser');
 						window.plugins.childBrowser.showWebPage(oauth_uri, options.childBrowserSettings);
@@ -104,4 +104,4 @@
             });
         }
     });	
-})(window.Zepto || window.jQuery);  
+})(window.Zepto || window.jQuery || window.jq);  
