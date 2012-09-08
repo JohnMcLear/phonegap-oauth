@@ -14,6 +14,8 @@ Some of the code is based on JSO (portions of it has been used), its license and
 The plugin is licensed under MIT License (2008). See http://opensource.org/licenses/alphabetical for full text.
 
 ## Demo
+Online demo here: http://starbite.co/oauth
+
 Download the mobile demo here:
 	https://build.phonegap.com/apps/201087/share
 
@@ -62,11 +64,6 @@ With PGB you need to specify the correct ChildBrowser plugin like this:
 <gap:plugin name="ChildBrowser" version="~2" /> <!-- for Cordova 1.5.0 - 1.8.1 -->
 <gap:plugin name="ChildBrowser" version="~1" /> <!-- for PhoneGap <= 1.4.1 -->
 ```
-
-## Demo
-Test our demo located here: http://starbite.co/oauth
-Or download our demo app (wich uses the same code) here:
-	<<Soon>>
 
 ## About
 Developed by StarBite, Bogota - Colombia @ 2012.
