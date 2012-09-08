@@ -29,14 +29,15 @@
 	<script>
 		(function(){
 			function broadcastMessage(eventName, data) {
-				if(typeof window.opener != 'undefined') {
-					var event = new Event(eventName)
-						fix(event)
-						event.data = data
+				var event = new Event(eventName);
+					fix(event);
+					event.data = data;
+				// Trigger on opener if available and here (childBrowser) by default
+				if(typeof window.opener != 'undefined' && typeof window.opener.document == 'object') {
 					window.opener.document.dispatchEvent(event)
 				}
 				
-				window.close();
+				window.close()
 			}
 			
 			// From Zepto
@@ -77,7 +78,9 @@
 			
 			var data = parseQueryString(window.location.hash.substring(1));
 			// Send the message and close this window.
-			broadcastMessage('<?php echo $callback ?>', data);
+			try	{
+				broadcastMessage('<?php echo $callback ?>', data);
+			} catch(e) {}				
 		})();
 	</script>
 </body>

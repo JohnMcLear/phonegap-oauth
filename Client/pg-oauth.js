@@ -21,10 +21,11 @@
 			
             var defaults = {
                 client_id: false,
-                redirect_uri : 'http://starbite.co/oauth/redirect.php',
+                redirect_uri: 'http://starbite.co/oauth/redirect.php',
 				autorization: getAutorizationDefault(options.service),
 				permissions: false,
-				frame: ['width=900px', 'height=400px', 'resizable=0', 'fullscreen=yes']
+				frame: ['width=900px', 'height=400px', 'resizable=0', 'fullscreen=yes'],
+				childBrowserSettings: { showLocationBar: false, showAddress: false },
             };
 			
 			var uuid = function() {
@@ -34,18 +35,40 @@
 				});
 			};
 			
+			var parseQueryString = function (qs) {
+				var e,
+					a = /\+/g,  // Regex for replacing addition symbol with a space
+					r = /([^&;=]+)=?([^&;]*)/g,
+					d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+					q = qs,
+					urlParams = {};
+
+				while (e = r.exec(q))
+				   urlParams[d(e[1])] = d(e[2]);
+
+				return urlParams;
+			};
+			
 			var popupWins = {};
 			var windowOpener = function(url, name, args) {
+				var win = null;
 				if ( typeof( popupWins[name] ) != "object" ) {
-					popupWins[name] = window.open(url,name,args.join(','));
+					win = window.open(url,name,args.join(','));
 				} else {
 					if (!popupWins[name].closed){
 						popupWins[name].location.href = url;
 					} else {
-						popupWins[name] = window.open(url, name,args.join(','));
+						win = window.open(url, name,args.join(','));
 					}
 				}
+				
+				popupWins[name] = win;
 				popupWins[name].focus();
+				
+				win.document.addEventListener('OAuthToken', function(data) {
+					console.log(data);
+					alert('Logged in!');
+				}, true);
 			};
 	
             var options =  $.extend(defaults, options),
@@ -63,12 +86,19 @@
             //Iterate over the current set of matched elements
             return this.each(function() {
 				$(this).click(function() {
-				
 					if('plugins' in window && window.plugins.childBrowser) {
-					
+						console.log('Opening childBrowser');
+						window.plugins.childBrowser.showWebPage(oauth_uri, options.childBrowserSettings);
+						window.plugins.childBrowser.onLocationChange = function(url) {
+							if(url.indexOf(options.redirect_uri)) {
+								$(document).trigger(options.callback.toString(), parseQueryString(url));
+								window.plugins.childBrowser.close();
+							}
+						};						
 					} else {
 						// Fallback to popup
-						windowOpener(oauth_uri, 'facebook', options.frame);
+						console.log('Opening windowOpener');
+						windowOpener(oauth_uri, options.service.toString(), options.frame);
 					}
 				});
             });

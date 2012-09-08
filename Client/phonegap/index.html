@@ -1,17 +1,15 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" href="css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	</head>
-	<body>
-		<div class="container">
-			<div class="btn btn-info facebook-login">Log in with Facebook</div>
-		</div>
+		<script src="phonegap.js"></script>
+		<script src="childbrowser.js"></script>
 		<script src="js/zepto.min.js"></script>
 		<script src="js/pg-oauth.js"></script>
-		<script>
-			$(document).ready(function() {
+		<script type="text/javascript">
+			document.addEventListener("deviceready", onDeviceReady, false);
+			function onDeviceReady() {
 				$('.facebook-login').oauthLogin({
 					service: 'facebook',
 					client_id: '186101451444149',
@@ -22,7 +20,12 @@
 					console.log(event.data);
 					alert('Logged in!');
 				});
-			});
+			}
 		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="btn btn-info facebook-login">Log in with Facebook</div>
+		</div>
 	</body>
 </html>

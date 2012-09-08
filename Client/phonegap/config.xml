@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<widget xmlns = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+		id        = "com.phonegap.example"
+		version   = "1.0.0">
+
+	<name>OAuth</name>
+	<description>Basic application to test OAuth authentication with ChildBrowser plugin.</description>
+	<author href="https://starbite.co/oauth" email="jose@starbite.co">Jose Vera (Startbite)</author>
+	<icon src="icon.png" />
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<gap:plugin name="ChildBrowser" />
+</widget>

@@ -11,7 +11,13 @@
 		<script src="js/zepto.min.js"></script>
 		<script src="../pg-oauth.js"></script>
 		<script>
-			$(document).ready(function() {
+			if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+			  document.addEventListener("deviceready", onDeviceReady, false);
+			} else {
+			  $(document).ready(function() { onDeviceReady(); });
+			}
+			
+			function onDeviceReady() {
 				$('.facebook-login').oauthLogin({
 					service: 'facebook',
 					client_id: '186101451444149',
@@ -22,7 +28,7 @@
 					console.log(event.data);
 					alert('Logged in!');
 				});
-			});
+			}
 		</script>
 	</body>
 </html>
