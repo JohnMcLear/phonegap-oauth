@@ -66,8 +66,8 @@
 				popupWins[name].focus();
 				
 				win.document.addEventListener('OAuthToken', function(data) {
-					console.log(data);
-					alert('Logged in!');
+					if(options.service == 'facebook') setFBUserCookie(data);
+					$(document).trigger(options.callback.toString(), data);
 				}, true);
 			};
 	
@@ -79,6 +79,14 @@
 						params = $.extend(options, params);
 					return options.autorization + '?' + $.param(params);
 				};
+				
+			var setFBUserCookie(data) {
+				var cookieName = 'fbsr_' + options.client_id;
+				var exdate = new Date();
+					exdate.setDate(exdate.getDate() + exdays);
+				var cookieValue= escape(data.auth_token) + "; expires=" + data.expires.toUTCString();
+				document.cookie = cookieName + "=" + cookieValue;
+			};
 				
 			// Get the access uri
 			var oauth_uri = accessTokenUri();
@@ -92,6 +100,7 @@
 						window.plugins.childBrowser.onLocationChange = function(url) {
 							if(url.indexOf(options.redirect_uri)) {
 								$(document).trigger(options.callback.toString(), parseQueryString(url));
+								if(options.service == 'facebook') setFBUserCookie(data);
 								window.plugins.childBrowser.close();
 							}
 						};						
