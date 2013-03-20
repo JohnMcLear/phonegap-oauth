@@ -5,13 +5,13 @@
  *  MIT 2008 License.
  *	
  *	Developed by StarBite <jose@starbite.co>
- *  Bogota, Colombia @ 2012.
+ *  Bogota, Colombia @ 2013.
  */
  
 (function($) {
 	$.extend($.fn, {
         oauthLogin: function(options) {
-			var getAutorizationDefault = function(service) {
+			var getAuthorizationDefault = function(service) {
 				var defaults = {'facebook': "https://www.facebook.com/dialog/oauth",
 								'linkedin': "https://www.linkedin.com/oauth",
 								'google': "https://accounts.google.com/o/oauth2/auth",
@@ -22,7 +22,7 @@
             var defaults = {
                 client_id: false,
                 redirect_uri: 'http://starbite.co/oauth/redirect.php',
-				autorization: getAutorizationDefault(options.service),
+				authorization: getAuthorizationDefault(options.service),
 				permissions: false,
 				frame: ['width=900px', 'height=400px', 'resizable=0', 'fullscreen=yes'],
 				childBrowserSettings: { showLocationBar: false, showAddress: false },
@@ -66,8 +66,8 @@
 				popupWins[name].focus();
 				
 				win.document.addEventListener('OAuthToken', function(data) {
-					if(options.service == 'facebook') setFBUserCookie(data);
-					$(document).trigger(options.callback.toString(), data);
+					console.log(data);
+					alert('Logged in!');
 				}, true);
 			};
 	
@@ -79,14 +79,6 @@
 						params = $.extend(options, params);
 					return options.autorization + '?' + $.param(params);
 				};
-				
-			var setFBUserCookie(data) {
-				var cookieName = 'fbsr_' + options.client_id;
-				var exdate = new Date();
-					exdate.setDate(exdate.getDate() + exdays);
-				var cookieValue= escape(data.auth_token) + "; expires=" + data.expires.toUTCString();
-				document.cookie = cookieName + "=" + cookieValue;
-			};
 				
 			// Get the access uri
 			var oauth_uri = accessTokenUri();
@@ -100,7 +92,6 @@
 						window.plugins.childBrowser.onLocationChange = function(url) {
 							if(url.indexOf(options.redirect_uri)) {
 								$(document).trigger(options.callback.toString(), parseQueryString(url));
-								if(options.service == 'facebook') setFBUserCookie(data);
 								window.plugins.childBrowser.close();
 							}
 						};						

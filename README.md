@@ -47,7 +47,7 @@ Available settings are:
 * callback: The name of the event to trigger with the login data, you need to bind or add an event listener to the document.
 * client_id: This is used by OAuth to identify your app.
 * redirect_uri: If you host your own redirect code you can set it here, put the full url to your redirect.php. We host one for free and we will never store any user data (is virtually impossible). Default: http://starbite.co/oauth/redirect.php.
-* autorization: This is the OAuth autorization uri, if the plugin has info about your service (Facebook, Instagram, LinkedIn...) it will detect and use the default autorization uri, if not set it here.
+* authorization: This is the OAuth authorization uri, if the plugin has info about your service (Facebook, Instagram, LinkedIn...) it will detect and use the default authorization uri, if not set it here.
 * permissions: (also know as scope) Wich permissions you're requesting, use an array and separate each permission. E.g: ['permission1', 'permission2']
 * frame: For the popup, set its parameters here. Default is: ['width=900px', 'height=400px', 'resizable=0', 'fullscreen=yes']
 * childBrowserSettings: An associative array with the settings to your childBrowserWindow. Default: { showLocationBar: false, showAddress: false }
