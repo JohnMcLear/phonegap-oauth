@@ -77,7 +77,7 @@
 						if(options.permissions !== false)
 							params.scope = options.permissions.join(',');
 						params = $.extend(options, params);
-					return options.autorization + '?' + $.param(params);
+					return options.authorization + '?' + $.param(params);
 				};
 				
 			// Get the access uri
