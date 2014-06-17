@@ -14,10 +14,10 @@ Some of the code is based on JSO (portions of it has been used), its license and
 The plugin is licensed under MIT License (2008). See http://opensource.org/licenses/alphabetical for full text.
 
 ## Demo
-Online demo here: http://starbite.co/oauth
+Online demo here: http://jose.com.co/oauth
 
 Download the mobile demo here:
-	https://build.phonegap.com/apps/201087/share
+	*will update soon*
 
 ## Usage
 The plugin comes with pre-defined oauth services such as Facebook, Instagram, LinkedIn and Google, you can add more by simply defining its parameters when you set up a button.
@@ -67,4 +67,4 @@ With PGB you need to specify the correct ChildBrowser plugin like this:
 
 ## About
 Developed by StarBite, Bogota - Colombia @ 2012.
-* @jor3l / <jose@starbite.co>
+* @jor3l / <jose@jose.com.co>

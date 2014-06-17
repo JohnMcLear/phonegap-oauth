@@ -21,7 +21,7 @@
 			
             var defaults = {
                 client_id: false,
-                redirect_uri: 'http://starbite.co/oauth/redirect.php',
+                redirect_uri: 'http://jose.com.co/oauth/redirect.php', // CHANGE WITH YOUR HOSTED FILE, THIS IS NOT 100% RELIABLE
 				authorization: getAuthorizationDefault(options.service),
 				permissions: false,
 				frame: ['width=900px', 'height=400px', 'resizable=0', 'fullscreen=yes'],
